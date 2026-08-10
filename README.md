@@ -1,5 +1,7 @@
 # e-utilities-cost
+
 [![CI](https://github.com/supakprn/e-utilities-cost/actions/workflows/ci.yml/badge.svg)](https://github.com/supakprn/e-utilities-cost/actions/workflows/ci.yml)
+
 ระบบควบคุม/ติดตามค่าสาธารณูปโภคของหน่วยงาน/สถานศึกษา (Utility Expense Tracking & Control System)
 
 Backend: Node.js + Express + Sequelize + MariaDB + JWT
