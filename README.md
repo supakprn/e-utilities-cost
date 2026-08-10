@@ -88,3 +88,13 @@ docker push <dockerhub-username>/e-utilities-cost-frontend:latest
 - JWT secret เก็บใน `.env` เท่านั้น — ห้าม commit `.env` จริงขึ้น git (ดู `.gitignore`)
 - Rate-limit บน `/api/auth/login`
 - helmet + cors จำกัด origin เฉพาะ frontend
+## Changelog
+
+### 2026-08-10
+- แก้ไข `backend/src/config/db.js`: เปลี่ยน Sequelize dialect จาก `mariadb` เป็น `mysql` (แพ็กเกจ `mysql2` ที่ติดตั้งไว้รองรับ MariaDB ผ่าน MySQL protocol อยู่แล้ว) — แก้ปัญหา backend container restart loop พร้อม error `Please install mariadb package manually`
+- แก้ไข `backend/Dockerfile` และ `frontend/Dockerfile`: เปลี่ยนจาก `npm ci` เป็น `npm install` เนื่องจากยังไม่มี `package-lock.json` ในโปรเจกต์ (`npm ci` ต้องมี lock file ถึงจะรันได้)
+- Build และ push image ขึ้น Docker Hub: `supakorn061049/e-utilities-cost-backend` และ `supakorn061049/e-utilities-cost-frontend`
+- ทดสอบระบบ end-to-end สำเร็จผ่าน `docker compose up -d --build`: login, dashboard, จัดการประเภทค่าใช้จ่าย/หมวดเงิน ทำงานได้ตามที่ออกแบบไว้
+
+### Initial release
+- โครงสร้างโปรเจกต์เต็มตามแผน: backend (Express + Sequelize + MariaDB + JWT), frontend (Vue 3 + Vite + Tailwind + Pinia + Chart.js), docker-compose สำหรับ mariadb, phpmyadmin, backend, frontend
